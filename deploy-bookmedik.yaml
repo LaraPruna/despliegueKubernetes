@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookmedik
+  labels:
+    app: bookmedik
+    tier: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bookmedik
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        app: bookmedik
+        tier: frontend
+    spec:
+      containers:
+      - name: contenedor-bookmedik
+        image: larapruna/bookmedik:v1_1
+        ports:
+          - name: http-server
+            containerPort: 80
+        env:
+          - name: DB_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: database
+                key: DB_HOST
+          - name: DB_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: database
+                key: DB_NAME
+          - name: DB_USER
+            valueFrom:
+              secretKeyRef:
+                name: mariadb
+                key: DB_USER
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mariadb
+                key: DB_PASSWORD
