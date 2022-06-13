@@ -23,7 +23,7 @@ spec:
             claimName: pvc-mariadb
       containers:
         - name: contenedor-mariadb
-          image: mariadb
+          image: mariadb:10.6
           ports:
             - name: mariadb-server
               containerPort: 3306
