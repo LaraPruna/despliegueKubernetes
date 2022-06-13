@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: contenedor-bookmedik
-        image: larapruna/bookmedik:v3
+        image: larapruna/bookmedik:v1
         ports:
           - name: http-server
             containerPort: 80
